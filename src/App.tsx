@@ -10,6 +10,7 @@ import PujasPage from "./pages/Pujas.tsx";
 import TemplesPage from "./pages/Temples.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
+import ProfilePage from "./pages/Profile.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/pujas" element={<PujasPage />} />
             <Route path="/temples" element={<TemplesPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
