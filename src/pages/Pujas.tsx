@@ -5,26 +5,25 @@ import PujaCard from "@/components/PujaCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const categories = ["All", "Health & Protection", "Prosperity", "Family Well-being", "Astrology", "Wealth", "Protection"];
+const categories = ["All", "Health & Protection", "Prosperity", "Family Well-being", "Astrology", "Peace", "Special Aarti"];
 
 const PujasPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-
-  const filtered = activeCategory === "All" ? pujas : pujas.filter(p => p.category === activeCategory);
+  const filtered = activeCategory === "All" ? pujas : pujas.filter((p) => p.category === activeCategory);
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      <div className="container py-12">
+      <div className="container py-12 pt-24">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <h1 className="font-heading text-3xl md:text-4xl font-bold mb-3">
             Sacred <span className="text-gradient-sacred">Pujas</span>
           </h1>
-          <p className="text-muted-foreground">Book personalized pujas at India's most revered temples.</p>
+          <p className="text-muted-foreground">Book personalized pujas at Shri Mahakaleshwar Jyotirlinga Temple.</p>
         </motion.div>
 
         <div className="flex flex-wrap gap-2 mb-8">
-          {categories.map(cat => (
+          {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -41,12 +40,7 @@ const PujasPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((puja, i) => (
-            <motion.div
-              key={puja.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-            >
+            <motion.div key={puja.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
               <PujaCard puja={puja} />
             </motion.div>
           ))}

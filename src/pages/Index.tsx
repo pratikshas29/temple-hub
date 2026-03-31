@@ -38,7 +38,7 @@ const Index = () => {
               <span className="text-gradient-sacred">Delivered Home</span>
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-              Book personalized Vedic pujas at 100+ sacred temples across India. Seek divine grace for health, prosperity, and peace — from anywhere in the world.
+              Book personalized Vedic pujas, offer chadhava, order prasad, and experience live darshan at Shri Mahakaleshwar Jyotirlinga Temple — from anywhere in the world.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -48,10 +48,10 @@ const Index = () => {
                 Explore Pujas
               </Link>
               <Link
-                to="/temples"
+                to="/darshan"
                 className="inline-flex items-center justify-center rounded-lg border border-primary-foreground/30 px-8 py-3.5 font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/10"
               >
-                View Temples
+                Live Darshan
               </Link>
             </div>
           </motion.div>
@@ -65,9 +65,9 @@ const Index = () => {
             <div key={rep} className="flex gap-12 items-center">
               <span className="text-primary-foreground font-semibold">🛡️ 100% Secure</span>
               <span className="text-primary-foreground/60">•</span>
-              <span className="text-primary-foreground font-semibold">🙏 Trusted by 10K+ Devotees</span>
+              <span className="text-primary-foreground font-semibold">🙏 Trusted by 50K+ Devotees</span>
               <span className="text-primary-foreground/60">•</span>
-              <span className="text-primary-foreground font-semibold">🕉️ 100+ Sacred Temples</span>
+              <span className="text-primary-foreground font-semibold">🕉️ Mahakaleshwar Temple</span>
               <span className="text-primary-foreground/60">•</span>
               <span className="text-primary-foreground font-semibold">📿 Authentic Vedic Rituals</span>
               <span className="text-primary-foreground/60">•</span>
@@ -83,7 +83,7 @@ const Index = () => {
             Featured <span className="text-gradient-sacred">Pujas</span>
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-xl mx-auto">
-            Book sacred pujas performed in your name at India's most powerful temples.
+            Book sacred pujas performed at Shri Mahakaleshwar Jyotirlinga Temple in your name.
           </motion.p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -105,7 +105,7 @@ const Index = () => {
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-12">
             <motion.h2 variants={fadeUp} custom={0} className="font-heading text-3xl md:text-4xl font-bold mb-4">
-              Your Complete <span className="text-gradient-sacred">Devotional</span> Platform
+              Our <span className="text-gradient-sacred">Services</span>
             </motion.h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
