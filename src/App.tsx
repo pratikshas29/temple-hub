@@ -4,14 +4,19 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import PujasPage from "./pages/Pujas.tsx";
-import TemplesPage from "./pages/Temples.tsx";
-import AdminDashboard from "./pages/AdminDashboard.tsx";
-import AdminLogin from "./pages/AdminLogin.tsx";
-import ProfilePage from "./pages/Profile.tsx";
-import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import PujasPage from "./pages/Pujas";
+import ChadhavaPage from "./pages/Chadhava";
+import PrasadPage from "./pages/Prasad";
+import DarshanPage from "./pages/Darshan";
+import AboutPage from "./pages/About";
+import ContactPage from "./pages/Contact";
+import ProfilePage from "./pages/Profile";
+import MyBookingsPage from "./pages/MyBookings";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -25,8 +30,13 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/pujas" element={<PujasPage />} />
-            <Route path="/temples" element={<TemplesPage />} />
+            <Route path="/chadhava" element={<ChadhavaPage />} />
+            <Route path="/prasad" element={<PrasadPage />} />
+            <Route path="/darshan" element={<DarshanPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/my-bookings" element={<MyBookingsPage />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />

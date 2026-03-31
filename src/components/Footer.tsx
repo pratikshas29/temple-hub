@@ -10,13 +10,20 @@ const Footer = () => (
             <span className="font-heading text-2xl font-bold text-gradient-sacred">Divya Seva</span>
           </div>
           <p className="text-sm opacity-80 max-w-md leading-relaxed">
-            Experience divine blessings from sacred temples of India. Book personalized pujas, offer chadhava, and connect with your spiritual heritage.
+            Experience divine blessings from Shri Mahakaleshwar Jyotirlinga Temple. Book personalized pujas, offer chadhava, order prasad, and experience darshan.
           </p>
         </div>
         <div>
           <h4 className="font-heading font-semibold mb-4">Quick Links</h4>
           <div className="flex flex-col gap-2">
-            {[{ to: "/", label: "Home" }, { to: "/pujas", label: "Pujas" }, { to: "/temples", label: "Temples" }].map(l => (
+            {[
+              { to: "/", label: "Home" },
+              { to: "/pujas", label: "Pujas" },
+              { to: "/chadhava", label: "Chadhava" },
+              { to: "/darshan", label: "Darshan" },
+              { to: "/about", label: "About" },
+              { to: "/contact", label: "Contact" },
+            ].map((l) => (
               <Link key={l.to} to={l.to} className="text-sm opacity-70 hover:opacity-100 transition-opacity">{l.label}</Link>
             ))}
           </div>
@@ -26,8 +33,9 @@ const Footer = () => (
           <div className="flex flex-col gap-2 text-sm opacity-70">
             <span>Online Puja</span>
             <span>Chadhava Seva</span>
-            <span>Temple Darshan</span>
-            <span>Horoscope</span>
+            <span>Prasad Delivery</span>
+            <span>Live Darshan</span>
+            <span>VIP Darshan Pass</span>
           </div>
         </div>
       </div>

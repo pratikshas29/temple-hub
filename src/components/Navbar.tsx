@@ -4,12 +4,23 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
 import ProfileDropdown from "@/components/ProfileDropdown";
-import { LogIn } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
+
+const navLinks = [
+  { path: "/", label: "Home" },
+  { path: "/pujas", label: "Pujas" },
+  { path: "/chadhava", label: "Chadhava" },
+  { path: "/prasad", label: "Prasad" },
+  { path: "/darshan", label: "Darshan" },
+  { path: "/about", label: "About" },
+  { path: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const location = useLocation();
   const { user, loading } = useAuth();
   const [authOpen, setAuthOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -22,17 +33,11 @@ const Navbar = () => {
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl">🙏</span>
-            <span className="font-heading text-xl font-bold text-gradient-sacred">
-              Divya Seva
-            </span>
+            <span className="font-heading text-xl font-bold text-gradient-sacred">Divya Seva</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {[
-              { path: "/", label: "Home" },
-              { path: "/pujas", label: "Pujas" },
-              { path: "/temples", label: "Temples" },
-            ].map((link) => (
+          <div className="hidden lg:flex items-center gap-6">
+            {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -66,8 +71,32 @@ const Navbar = () => {
                 </button>
               )
             )}
+
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2">
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-border bg-card py-4">
+            <div className="container flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.path) ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </motion.nav>
 
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} />

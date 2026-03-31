@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useRef, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { User, Settings, BookOpen, LogOut, Shield } from "lucide-react";
@@ -22,7 +23,7 @@ const ProfileDropdown = () => {
 
   const menuItems = [
     { icon: User, label: "My Profile", action: () => navigate("/profile") },
-    { icon: BookOpen, label: "My Bookings", action: () => navigate("/pujas") },
+    { icon: BookOpen, label: "My Bookings", action: () => navigate("/my-bookings") },
     { icon: Shield, label: "Admin Panel", action: () => navigate("/admin") },
     { icon: Settings, label: "Settings", action: () => {} },
   ];
@@ -40,13 +41,10 @@ const ProfileDropdown = () => {
 
       {open && (
         <div className="absolute right-0 top-12 w-64 rounded-xl bg-card border border-border shadow-warm overflow-hidden z-50 animate-fade-up">
-          {/* Header */}
           <div className="p-4 bg-muted/50 border-b border-border">
             <p className="font-semibold text-sm">{displayName}</p>
             <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
           </div>
-
-          {/* Menu Items */}
           <div className="py-2">
             {menuItems.map((item) => (
               <button
@@ -59,8 +57,6 @@ const ProfileDropdown = () => {
               </button>
             ))}
           </div>
-
-          {/* Sign Out */}
           <div className="border-t border-border py-2">
             <button
               onClick={() => { signOut(); setOpen(false); }}
