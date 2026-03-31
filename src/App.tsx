@@ -10,6 +10,7 @@ import PujasPage from "./pages/Pujas.tsx";
 import TemplesPage from "./pages/Temples.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
+import ProfilePage from "./pages/Profile.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const queryClient = new QueryClient();
