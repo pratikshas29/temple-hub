@@ -15,6 +15,8 @@ interface BookingRow {
   gotra: string | null;
   date: string;
   amount: number;
+  quantity: number;
+  delivery_address: string | null;
   status: string;
   notes: string | null;
   created_at: string;
