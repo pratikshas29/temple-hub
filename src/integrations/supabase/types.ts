@@ -20,11 +20,13 @@ export type Database = {
           booking_type: string
           created_at: string
           date: string
+          delivery_address: string | null
           devotee_name: string
           gotra: string | null
           id: string
           item_name: string
           notes: string | null
+          quantity: number
           status: string
           user_id: string
         }
@@ -33,11 +35,13 @@ export type Database = {
           booking_type: string
           created_at?: string
           date: string
+          delivery_address?: string | null
           devotee_name: string
           gotra?: string | null
           id?: string
           item_name: string
           notes?: string | null
+          quantity?: number
           status?: string
           user_id: string
         }
@@ -46,11 +50,13 @@ export type Database = {
           booking_type?: string
           created_at?: string
           date?: string
+          delivery_address?: string | null
           devotee_name?: string
           gotra?: string | null
           id?: string
           item_name?: string
           notes?: string | null
+          quantity?: number
           status?: string
           user_id?: string
         }

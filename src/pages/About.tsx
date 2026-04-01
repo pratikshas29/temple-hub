@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { templeInfo, stats } from "@/lib/data";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { MapPin, Clock, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MapPin, Clock, Phone, Heart, Shield, Star, Users, BookOpen, Sparkles, ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,6 +11,36 @@ const fadeUp = {
     opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 },
   }),
 };
+
+const services = [
+  { icon: "🕉️", title: "Online Puja Booking", desc: "Book personalized pujas performed by temple pandits in your name with full Vedic rituals." },
+  { icon: "📿", title: "Chadhava Seva", desc: "Offer sacred items like Bilva Patra, Panchamrit, Rudraksha to Lord Mahakal." },
+  { icon: "🍃", title: "Prasad Delivery", desc: "Receive blessed prasad from the temple delivered right to your doorstep." },
+  { icon: "📺", title: "Live Darshan", desc: "Watch live aarti and darshan from the sanctum sanctorum from anywhere in the world." },
+  { icon: "🛕", title: "Offline Darshan Pass", desc: "Book VIP darshan passes for priority temple entry without long queues." },
+  { icon: "📅", title: "Temple Events", desc: "Stay updated and participate in special temple festivals and events." },
+];
+
+const journey = [
+  { step: "01", title: "Choose Your Seva", desc: "Browse pujas, chadhava, prasad, or darshan options." },
+  { step: "02", title: "Fill Details", desc: "Enter devotee name, gotra, date, and delivery address." },
+  { step: "03", title: "Make Payment", desc: "Pay securely online. Your booking is instantly confirmed." },
+  { step: "04", title: "Receive Blessings", desc: "Get video proof, prasad delivery, or attend darshan as booked." },
+];
+
+const whyChooseUs = [
+  { icon: Shield, title: "100% Authentic", desc: "All rituals performed by certified temple pandits following Vedic traditions." },
+  { icon: Star, title: "Trusted by 50K+", desc: "Over 50,000 devotees have experienced divine blessings through our platform." },
+  { icon: Heart, title: "With Love & Devotion", desc: "Every seva is performed with utmost devotion and care for your spiritual needs." },
+  { icon: Users, title: "Dedicated Support", desc: "Our team is available 24/7 to assist you with bookings and queries." },
+];
+
+const coreValues = [
+  { icon: BookOpen, title: "Dharma", desc: "We uphold the sacred traditions and rituals of Sanatan Dharma in every seva." },
+  { icon: Heart, title: "Bhakti", desc: "Devotion is at the heart of everything we do — for the Lord and for you." },
+  { icon: Shield, title: "Transparency", desc: "Clear pricing, real-time updates, and video proof of every puja performed." },
+  { icon: Sparkles, title: "Accessibility", desc: "Making divine blessings accessible to every devotee, anywhere in the world." },
+];
 
 const AboutPage = () => (
   <div className="min-h-screen">
@@ -25,11 +56,11 @@ const AboutPage = () => (
           animate={{ opacity: 1, y: 0 }}
           className="font-heading text-3xl md:text-5xl font-bold text-primary-foreground mb-2"
         >
-          {templeInfo.name}
+          About <span className="text-gradient-sacred">Divya Seva</span>
         </motion.h1>
-        <div className="flex items-center gap-2 text-primary-foreground/80">
-          <MapPin className="w-4 h-4" /> {templeInfo.location}
-        </div>
+        <p className="text-primary-foreground/80 max-w-xl">
+          Your trusted platform for online temple services at {templeInfo.name}.
+        </p>
       </div>
     </section>
 
@@ -45,10 +76,10 @@ const AboutPage = () => (
               {templeInfo.description}
             </motion.p>
             <motion.p variants={fadeUp} custom={2} className="text-muted-foreground leading-relaxed mb-6">
-              The Mahakaleshwar Temple is one of the most revered pilgrimage sites in India. The lingam at the Mahakal is believed to be Swayambhu (born of itself), deriving currents of power from within itself as against the other Jyotirlingas which are ritually established. The idol of Mahakaleshwar is known to be dakshinamurti — facing the south — unique among the twelve Jyotirlingas.
+              The Mahakaleshwar Temple is one of the most revered pilgrimage sites in India. The lingam at the Mahakal is believed to be Swayambhu (born of itself), deriving currents of power from within itself as against the other Jyotirlingas which are ritually established.
             </motion.p>
             <motion.p variants={fadeUp} custom={3} className="text-muted-foreground leading-relaxed">
-              The Bhasma Aarti, performed during the early morning hours, is the most famous ritual of this temple. The deity is smeared with fresh ash from the funeral pyre, accompanied by chanting of mantras, creating a profoundly spiritual atmosphere.
+              The Bhasma Aarti, performed during the early morning hours, is the most famous ritual of this temple. The deity is smeared with fresh ash from the funeral pyre, accompanied by chanting of mantras.
             </motion.p>
           </motion.div>
         </div>
@@ -87,7 +118,6 @@ const AboutPage = () => (
               </div>
             </div>
           </div>
-
           <div className="rounded-xl bg-card p-6 shadow-card">
             <h3 className="font-heading font-semibold mb-3">Deity</h3>
             <p className="text-primary font-semibold">{templeInfo.deity}</p>
@@ -97,24 +127,133 @@ const AboutPage = () => (
       </div>
     </section>
 
+    {/* Our Services */}
+    <section className="bg-muted/50 py-16">
+      <div className="container">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-12">
+          <motion.h2 variants={fadeUp} custom={0} className="font-heading text-3xl font-bold mb-3">
+            Our <span className="text-gradient-sacred">Services</span>
+          </motion.h2>
+          <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-xl mx-auto">
+            Everything you need for a complete spiritual experience from anywhere.
+          </motion.p>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <motion.div key={s.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}
+              className="rounded-xl bg-card p-6 shadow-card hover:shadow-warm transition-shadow">
+              <span className="text-3xl mb-4 block">{s.icon}</span>
+              <h3 className="font-heading text-lg font-semibold mb-2">{s.title}</h3>
+              <p className="text-sm text-muted-foreground">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* How We Serve You — Journey */}
+    <section className="container py-16">
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-12">
+        <motion.h2 variants={fadeUp} custom={0} className="font-heading text-3xl font-bold mb-3">
+          How We <span className="text-gradient-sacred">Serve You</span>
+        </motion.h2>
+        <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-xl mx-auto">
+          A simple 4-step journey to receive divine blessings.
+        </motion.p>
+      </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {journey.map((j, i) => (
+          <motion.div key={j.step} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}
+            className="text-center">
+            <div className="w-16 h-16 rounded-full bg-gradient-sacred flex items-center justify-center text-primary-foreground font-heading text-xl font-bold mx-auto mb-4">
+              {j.step}
+            </div>
+            <h3 className="font-heading font-semibold mb-2">{j.title}</h3>
+            <p className="text-sm text-muted-foreground">{j.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+
+    {/* Why Choose Us */}
+    <section className="bg-muted/50 py-16">
+      <div className="container">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-12">
+          <motion.h2 variants={fadeUp} custom={0} className="font-heading text-3xl font-bold mb-3">
+            Why Choose <span className="text-gradient-sacred">Us</span>
+          </motion.h2>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {whyChooseUs.map((w, i) => (
+            <motion.div key={w.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}
+              className="rounded-xl bg-card p-6 shadow-card text-center">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <w.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold mb-2">{w.title}</h3>
+              <p className="text-sm text-muted-foreground">{w.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Core Values */}
+    <section className="container py-16">
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-12">
+        <motion.h2 variants={fadeUp} custom={0} className="font-heading text-3xl font-bold mb-3">
+          Our Core <span className="text-gradient-sacred">Values</span>
+        </motion.h2>
+      </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {coreValues.map((v, i) => (
+          <motion.div key={v.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}
+            className="rounded-xl border border-border p-6 text-center hover:border-primary/30 transition-colors">
+            <div className="w-12 h-12 rounded-full bg-gradient-sacred flex items-center justify-center mx-auto mb-4">
+              <v.icon className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <h3 className="font-heading font-semibold mb-2">{v.title}</h3>
+            <p className="text-sm text-muted-foreground">{v.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+
     {/* Stats */}
     <section className="bg-gradient-divine py-16">
       <div className="container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
+            <motion.div key={s.label} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <div className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-1">{s.value}</div>
               <div className="text-sm text-primary-foreground/70">{s.label}</div>
             </motion.div>
           ))}
         </div>
       </div>
+    </section>
+
+    {/* CTA */}
+    <section className="container py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="rounded-2xl bg-gradient-sacred p-10 md:p-16 text-center"
+      >
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+          Begin Your Spiritual Journey Today
+        </h2>
+        <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+          Book a puja, offer chadhava, or experience live darshan — all from the comfort of your home.
+        </p>
+        <Link
+          to="/pujas"
+          className="inline-flex items-center gap-2 rounded-lg bg-card px-8 py-3.5 font-semibold text-foreground shadow-lg transition-transform hover:scale-105"
+        >
+          Book Now <ArrowRight className="w-4 h-4" />
+        </Link>
+      </motion.div>
     </section>
 
     <Footer />

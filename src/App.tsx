@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,9 +7,6 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PujasPage from "./pages/Pujas";
-import ChadhavaPage from "./pages/Chadhava";
-import PrasadPage from "./pages/Prasad";
-import DarshanPage from "./pages/Darshan";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
 import ProfilePage from "./pages/Profile";
@@ -30,9 +27,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/pujas" element={<PujasPage />} />
-            <Route path="/chadhava" element={<ChadhavaPage />} />
-            <Route path="/prasad" element={<PrasadPage />} />
-            <Route path="/darshan" element={<DarshanPage />} />
+            {/* Redirect old routes to /pujas */}
+            <Route path="/chadhava" element={<Navigate to="/pujas" replace />} />
+            <Route path="/prasad" element={<Navigate to="/pujas" replace />} />
+            <Route path="/darshan" element={<Navigate to="/pujas" replace />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<ProfilePage />} />
