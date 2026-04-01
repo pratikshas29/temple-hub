@@ -118,8 +118,11 @@ const MyBookingsPage = () => {
                     </div>
                     <h3 className="font-heading font-semibold text-lg">{b.item_name}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Devotee: {b.devotee_name}{b.gotra ? ` • Gotra: ${b.gotra}` : ""}
+                      Devotee: {b.devotee_name}{b.gotra ? ` • Gotra: ${b.gotra}` : ""}{b.quantity > 1 ? ` • ${b.quantity} people` : ""}
                     </p>
+                    {b.delivery_address && (
+                      <p className="text-xs text-muted-foreground mt-1">📍 {b.delivery_address}</p>
+                    )}
                   </div>
                   <div className="flex items-center gap-6 text-sm">
                     <div className="flex items-center gap-1 text-muted-foreground">
