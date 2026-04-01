@@ -36,6 +36,16 @@ export interface DarshanSlot {
   image: string;
 }
 
+export interface TempleEvent {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  price: number;
+  image: string;
+  tag?: string;
+}
+
 export interface Review {
   id: string;
   name: string;
@@ -57,6 +67,10 @@ export const templeInfo = {
   phone: "+91 73400 50000",
   email: "info@mahakaleshwar.org",
   address: "Jaisinghpura, Ujjain, Madhya Pradesh 456006, India",
+  history: "The Mahakaleshwar Temple has a rich history dating back to the pre-historic period. The present structure was built by the Marathas in the 18th century. The temple was destroyed by Iltutmish in 1234 CE and was later rebuilt. It is mentioned in many ancient Indian texts including the Puranas.",
+  architecture: "The temple has five levels — one underground. The idol of Mahakaleshwar is the dakshinamurti, facing south. The silver-plated doors, intricate carvings, and the Nagara-style shikhara are architectural marvels.",
+  festivals: "Major festivals include Maha Shivaratri, Shravan month celebrations, Navratri, and the annual Simhastha (Kumbh) Mela held every 12 years on the banks of the Shipra river.",
+  significance: "The lingam at Mahakal is believed to be Swayambhu — born of itself. It is the only Jyotirlinga facing south, which is considered unique among all twelve. The temple is also one of the 18 Maha Shakti Peethas.",
 };
 
 export const pujas: Puja[] = [
@@ -121,114 +135,32 @@ export const pujas: Puja[] = [
 ];
 
 export const chadhavaItems: ChadhavaItem[] = [
-  {
-    id: "c1",
-    title: "Bilva Patra (108)",
-    description: "Offer 108 sacred Bilva leaves to Lord Shiva for removal of sins and blessings.",
-    price: 251,
-    image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=400",
-    tag: "Popular",
-  },
-  {
-    id: "c2",
-    title: "Panchamrit Abhishek",
-    description: "Abhishek with milk, curd, honey, ghee, and sugar — the five nectars.",
-    price: 501,
-    image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400",
-  },
-  {
-    id: "c3",
-    title: "Rudraksha Mala Offering",
-    description: "Offer a 5-mukhi Rudraksha mala to Mahakaleshwar for spiritual growth.",
-    price: 1100,
-    image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=400",
-    tag: "Special",
-  },
-  {
-    id: "c4",
-    title: "Flowers & Shringar",
-    description: "Offer flowers, vermillion, and shringar items to the deity.",
-    price: 351,
-    image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=400",
-  },
-  {
-    id: "c5",
-    title: "Vastra Daan (Cloth Offering)",
-    description: "Offer sacred cloth to Lord Shiva as an act of devotion.",
-    price: 751,
-    image: "https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=400",
-  },
-  {
-    id: "c6",
-    title: "Full Chadhava Combo",
-    description: "Complete chadhava with bilva patra, flowers, panchamrit, vastra, and prasad.",
-    price: 2100,
-    image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=400",
-    tag: "Best Value",
-  },
+  { id: "c1", title: "Bilva Patra (108)", description: "Offer 108 sacred Bilva leaves to Lord Shiva for removal of sins and blessings.", price: 251, image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=400", tag: "Popular" },
+  { id: "c2", title: "Panchamrit Abhishek", description: "Abhishek with milk, curd, honey, ghee, and sugar — the five nectars.", price: 501, image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400" },
+  { id: "c3", title: "Rudraksha Mala Offering", description: "Offer a 5-mukhi Rudraksha mala to Mahakaleshwar for spiritual growth.", price: 1100, image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=400", tag: "Special" },
+  { id: "c4", title: "Flowers & Shringar", description: "Offer flowers, vermillion, and shringar items to the deity.", price: 351, image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=400" },
+  { id: "c5", title: "Vastra Daan (Cloth Offering)", description: "Offer sacred cloth to Lord Shiva as an act of devotion.", price: 751, image: "https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=400" },
+  { id: "c6", title: "Full Chadhava Combo", description: "Complete chadhava with bilva patra, flowers, panchamrit, vastra, and prasad.", price: 2100, image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=400", tag: "Best Value" },
 ];
 
 export const prasadItems: PrasadItem[] = [
-  {
-    id: "p1",
-    title: "Mahakal Prasad Box",
-    description: "Sacred prasad from Mahakaleshwar temple — includes laddu, pedha, and vibhuti.",
-    price: 301,
-    image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=400",
-  },
-  {
-    id: "p2",
-    title: "Vibhuti & Rudraksha Set",
-    description: "Holy vibhuti (sacred ash) along with a blessed 5-mukhi Rudraksha.",
-    price: 501,
-    image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400",
-  },
-  {
-    id: "p3",
-    title: "Premium Prasad Hamper",
-    description: "Includes laddu, pedha, vibhuti, rudraksha, holy thread, and blessed water.",
-    price: 1100,
-    image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=400",
-  },
+  { id: "p1", title: "Mahakal Prasad Box", description: "Sacred prasad from Mahakaleshwar temple — includes laddu, pedha, and vibhuti.", price: 301, image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=400" },
+  { id: "p2", title: "Vibhuti & Rudraksha Set", description: "Holy vibhuti (sacred ash) along with a blessed 5-mukhi Rudraksha.", price: 501, image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400" },
+  { id: "p3", title: "Premium Prasad Hamper", description: "Includes laddu, pedha, vibhuti, rudraksha, holy thread, and blessed water.", price: 1100, image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=400" },
 ];
 
 export const darshanSlots: DarshanSlot[] = [
-  {
-    id: "d1",
-    title: "Bhasma Aarti Live Darshan",
-    description: "Watch the legendary Bhasma Aarti live from the sanctum sanctorum at dawn.",
-    type: "online",
-    price: 0,
-    time: "4:00 AM – 5:30 AM",
-    image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600",
-  },
-  {
-    id: "d2",
-    title: "Morning Darshan (Online)",
-    description: "Live morning darshan and aarti telecast for devotees worldwide.",
-    type: "online",
-    price: 0,
-    time: "7:00 AM – 8:00 AM",
-    image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600",
-  },
-  {
-    id: "d3",
-    title: "VIP Offline Darshan",
-    description: "Priority entry with guided darshan. Skip the queue for a peaceful experience.",
-    type: "offline",
-    price: 500,
-    time: "6:00 AM – 10:00 PM",
-    image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=600",
-  },
-  {
-    id: "d4",
-    title: "Evening Sandhya Aarti (Offline)",
-    description: "Attend the beautiful evening Sandhya Aarti inside the temple premises.",
-    type: "offline",
-    price: 200,
-    time: "6:30 PM – 7:30 PM",
-    image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600",
-  },
+  { id: "d1", title: "Bhasma Aarti Live Darshan", description: "Watch the legendary Bhasma Aarti live from the sanctum sanctorum at dawn.", type: "online", price: 0, time: "4:00 AM – 5:30 AM", image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600" },
+  { id: "d2", title: "Morning Darshan (Online)", description: "Live morning darshan and aarti telecast for devotees worldwide.", type: "online", price: 0, time: "7:00 AM – 8:00 AM", image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600" },
+  { id: "d3", title: "VIP Offline Darshan", description: "Priority entry with guided darshan. Skip the queue for a peaceful experience.", type: "offline", price: 500, time: "6:00 AM – 10:00 PM", image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=600" },
+  { id: "d4", title: "Evening Sandhya Aarti (Offline)", description: "Attend the beautiful evening Sandhya Aarti inside the temple premises.", type: "offline", price: 200, time: "6:30 PM – 7:30 PM", image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600" },
+];
+
+export const templeEvents: TempleEvent[] = [
+  { id: "e1", title: "Maha Shivaratri Celebration", description: "Grand celebration with special abhishek, night-long bhajan, and Bhasma Aarti.", date: "26 February 2026", price: 2100, image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600", tag: "Grand Festival" },
+  { id: "e2", title: "Shravan Somvar Special", description: "Every Monday of Shravan month — special Rudrabhishek and offerings.", date: "Every Monday, July–August", price: 1100, image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600", tag: "Monthly" },
+  { id: "e3", title: "Navratri Durga Puja", description: "Nine nights of devotion with Durga Saptashati path and havan.", date: "2–10 October 2026", price: 3100, image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=600" },
+  { id: "e4", title: "Kartik Purnima Deep Utsav", description: "Grand deep daan on Kartik Purnima at the temple ghat.", date: "15 November 2026", price: 501, image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600", tag: "Special" },
 ];
 
 export const reviews: Review[] = [

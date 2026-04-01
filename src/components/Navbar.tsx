@@ -8,10 +8,7 @@ import { LogIn, Menu, X } from "lucide-react";
 
 const navLinks = [
   { path: "/", label: "Home" },
-  { path: "/pujas", label: "Pujas" },
-  { path: "/chadhava", label: "Chadhava" },
-  { path: "/prasad", label: "Prasad" },
-  { path: "/darshan", label: "Darshan" },
+  { path: "/pujas", label: "Puja Booking" },
   { path: "/about", label: "About" },
   { path: "/contact", label: "Contact" },
 ];
@@ -78,7 +75,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {mobileOpen && (
           <div className="lg:hidden border-t border-border bg-card py-4">
             <div className="container flex flex-col gap-2">
