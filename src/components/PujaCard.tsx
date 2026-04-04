@@ -55,6 +55,8 @@ const PujaCard = ({ puja }: PujaCardProps) => {
         bookingType="puja"
         itemName={puja.title}
         amount={puja.price}
+        isCustomAmount={puja.isCustomAmount}
+        minAmount={puja.minAmount}
       />
     </>
   );

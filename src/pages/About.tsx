@@ -13,32 +13,32 @@ const fadeUp = {
 };
 
 const services = [
-  { icon: "🕉️", title: "Online Puja Booking", desc: "Book personalized pujas performed by temple pandits in your name with full Vedic rituals." },
-  { icon: "📿", title: "Chadhava Seva", desc: "Offer sacred items like Bilva Patra, Panchamrit, Rudraksha to Lord Mahakal." },
-  { icon: "🍃", title: "Prasad Delivery", desc: "Receive blessed prasad from the temple delivered right to your doorstep." },
-  { icon: "📺", title: "Live Darshan", desc: "Watch live aarti and darshan from the sanctum sanctorum from anywhere in the world." },
-  { icon: "🛕", title: "Offline Darshan Pass", desc: "Book VIP darshan passes for priority temple entry without long queues." },
-  { icon: "📅", title: "Temple Events", desc: "Stay updated and participate in special temple festivals and events." },
+  { icon: "🕉️", title: "Online Puja Booking", desc: "Book personalized pujas performed by hereditary Shreepujak in your name with full Vedic rituals." },
+  { icon: "📿", title: "Chadhava / Arpan", desc: "Offer Regular Otee, Saree Otee, and sacred items to Goddess Mahalaxmi." },
+  { icon: "🍃", title: "Naivedya / Bhog", desc: "Offer Puranpoli Naivedya and Bhojan for Brahman, Kumarika, and Suwasini." },
+  { icon: "📺", title: "Online Darshan", desc: "Watch live aarti and darshan of Ambabai from anywhere in the world." },
+  { icon: "🛕", title: "Offline Darshan Pass", desc: "Book VIP darshan passes for priority temple entry at Kolhapur." },
+  { icon: "🙏", title: "Annadan & Gou Seva", desc: "Contribute to Annadan and Gou Seva with any custom amount." },
 ];
 
 const journey = [
-  { step: "01", title: "Choose Your Seva", desc: "Browse pujas, chadhava, prasad, or darshan options." },
-  { step: "02", title: "Fill Details", desc: "Enter devotee name, gotra, date, and delivery address." },
-  { step: "03", title: "Make Payment", desc: "Pay securely online. Your booking is instantly confirmed." },
-  { step: "04", title: "Receive Blessings", desc: "Get video proof, prasad delivery, or attend darshan as booked." },
+  { step: "01", title: "Choose Your Seva", desc: "Browse pujas, chadhava, naivedya, or darshan options." },
+  { step: "02", title: "Select Date & Type", desc: "Pick a date within the festival period and choose online or offline." },
+  { step: "03", title: "Enter Details", desc: "Just your name and optional gotra — that's it!" },
+  { step: "04", title: "Instant Confirmation", desc: "Pay and get instant booking confirmation with booking ID." },
 ];
 
 const whyChooseUs = [
-  { icon: Shield, title: "100% Authentic", desc: "All rituals performed by certified temple pandits following Vedic traditions." },
+  { icon: Shield, title: "Hereditary Shreepujak", desc: "All rituals performed by hereditary Shreepujak of Mahalaxmi Mandir, Kolhapur." },
   { icon: Star, title: "Trusted by 50K+", desc: "Over 50,000 devotees have experienced divine blessings through our platform." },
   { icon: Heart, title: "With Love & Devotion", desc: "Every seva is performed with utmost devotion and care for your spiritual needs." },
-  { icon: Users, title: "Dedicated Support", desc: "Our team is available 24/7 to assist you with bookings and queries." },
+  { icon: Users, title: "Ultra-Fast Booking", desc: "Book in under 30 seconds. Returning users can book in just 1–2 clicks." },
 ];
 
 const coreValues = [
   { icon: BookOpen, title: "Dharma", desc: "We uphold the sacred traditions and rituals of Sanatan Dharma in every seva." },
-  { icon: Heart, title: "Bhakti", desc: "Devotion is at the heart of everything we do — for the Lord and for you." },
-  { icon: Shield, title: "Transparency", desc: "Clear pricing, real-time updates, and video proof of every puja performed." },
+  { icon: Heart, title: "Bhakti", desc: "Devotion is at the heart of everything we do — for the Goddess and for you." },
+  { icon: Shield, title: "Transparency", desc: "Clear pricing, real-time updates, and instant confirmation of every booking." },
   { icon: Sparkles, title: "Accessibility", desc: "Making divine blessings accessible to every devotee, anywhere in the world." },
 ];
 
@@ -59,7 +59,7 @@ const AboutPage = () => (
           About <span className="text-gradient-sacred">Divya Seva</span>
         </motion.h1>
         <p className="text-primary-foreground/80 max-w-xl">
-          Your trusted platform for online temple services at {templeInfo.name}.
+          Puja services by hereditary Shreepujak at {templeInfo.name}.
         </p>
       </div>
     </section>
@@ -76,10 +76,10 @@ const AboutPage = () => (
               {templeInfo.description}
             </motion.p>
             <motion.p variants={fadeUp} custom={2} className="text-muted-foreground leading-relaxed mb-6">
-              The Mahakaleshwar Temple is one of the most revered pilgrimage sites in India. The lingam at the Mahakal is believed to be Swayambhu (born of itself), deriving currents of power from within itself as against the other Jyotirlingas which are ritually established.
+              {templeInfo.history}
             </motion.p>
             <motion.p variants={fadeUp} custom={3} className="text-muted-foreground leading-relaxed">
-              The Bhasma Aarti, performed during the early morning hours, is the most famous ritual of this temple. The deity is smeared with fresh ash from the funeral pyre, accompanied by chanting of mantras.
+              {templeInfo.significance}
             </motion.p>
           </motion.div>
         </div>
@@ -121,7 +121,7 @@ const AboutPage = () => (
           <div className="rounded-xl bg-card p-6 shadow-card">
             <h3 className="font-heading font-semibold mb-3">Deity</h3>
             <p className="text-primary font-semibold">{templeInfo.deity}</p>
-            <p className="text-sm text-muted-foreground mt-1">One of the twelve sacred Jyotirlingas</p>
+            <p className="text-sm text-muted-foreground mt-1">One of the sacred Shakti Peethas</p>
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@ const AboutPage = () => (
           How We <span className="text-gradient-sacred">Serve You</span>
         </motion.h2>
         <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-xl mx-auto">
-          A simple 4-step journey to receive divine blessings.
+          Book in under 30 seconds — the fastest puja booking experience.
         </motion.p>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -245,7 +245,7 @@ const AboutPage = () => (
           Begin Your Spiritual Journey Today
         </h2>
         <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
-          Book a puja, offer chadhava, or experience live darshan — all from the comfort of your home.
+          Book a puja by hereditary Shreepujak, offer chadhava, or experience live darshan — all from the comfort of your home.
         </p>
         <Link
           to="/pujas"
