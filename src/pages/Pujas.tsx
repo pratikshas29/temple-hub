@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { pujas, chadhavaItems, prasadItems, darshanSlots, templeEvents, templeInfo } from "@/lib/data";
+import { pujas, chadhavaItems, prasadItems, otherServices, darshanSlots, templeEvents, templeInfo } from "@/lib/data";
 import type { ChadhavaItem, PrasadItem, DarshanSlot, TempleEvent } from "@/lib/data";
 import PujaCard from "@/components/PujaCard";
 import BookingModal from "@/components/BookingModal";
@@ -9,17 +9,13 @@ import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Monitor, MapPin, Calendar, Clock, Phone, Mail } from "lucide-react";
 
-const categories = ["All", "Health & Protection", "Prosperity", "Family Well-being", "Astrology", "Peace", "Special Aarti"];
-
 const PujasPage = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
   const [darshanFilter, setDarshanFilter] = useState<"all" | "online" | "offline">("all");
   const [selectedChadhava, setSelectedChadhava] = useState<ChadhavaItem | null>(null);
-  const [selectedPrasad, setSelectedPrasad] = useState<PrasadItem | null>(null);
+  const [selectedPrasad, setSelectedPrasad] = useState<(PrasadItem & { isCustomAmount?: boolean; minAmount?: number }) | null>(null);
   const [selectedDarshan, setSelectedDarshan] = useState<DarshanSlot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<TempleEvent | null>(null);
 
-  const filteredPujas = activeCategory === "All" ? pujas : pujas.filter((p) => p.category === activeCategory);
   const filteredDarshan = darshanFilter === "all" ? darshanSlots : darshanSlots.filter((s) => s.type === darshanFilter);
 
   return (
@@ -30,44 +26,29 @@ const PujasPage = () => {
           <h1 className="font-heading text-3xl md:text-4xl font-bold mb-3">
             Puja <span className="text-gradient-sacred">Booking</span>
           </h1>
-          <p className="text-muted-foreground">Book all temple services at Shri Mahakaleshwar Jyotirlinga Temple.</p>
+          <p className="text-muted-foreground">Book all temple services at Shri Mahalaxmi Mandir, Kolhapur — by hereditary Shreepujak.</p>
         </motion.div>
 
         <Tabs defaultValue="pujas" className="w-full">
           <TabsList className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 rounded-xl mb-8">
-            <TabsTrigger value="pujas" className="flex-1 min-w-[100px]">🕉️ Pujas</TabsTrigger>
+            <TabsTrigger value="pujas" className="flex-1 min-w-[100px]">🕉️ Pooja</TabsTrigger>
             <TabsTrigger value="chadhava" className="flex-1 min-w-[100px]">📿 Chadhava</TabsTrigger>
-            <TabsTrigger value="prasad" className="flex-1 min-w-[100px]">🍃 Prasad</TabsTrigger>
+            <TabsTrigger value="naivedya" className="flex-1 min-w-[100px]">🍃 Naivedya</TabsTrigger>
+            <TabsTrigger value="other" className="flex-1 min-w-[100px]">🙏 Other</TabsTrigger>
             <TabsTrigger value="darshan" className="flex-1 min-w-[100px]">🛕 Darshan</TabsTrigger>
             <TabsTrigger value="events" className="flex-1 min-w-[100px]">📅 Events</TabsTrigger>
-            <TabsTrigger value="temple" className="flex-1 min-w-[100px]">🏛️ Temple Details</TabsTrigger>
+            <TabsTrigger value="temple" className="flex-1 min-w-[100px]">🏛️ Temple</TabsTrigger>
           </TabsList>
 
           {/* Pujas Tab */}
           <TabsContent value="pujas">
-            <div className="flex flex-wrap gap-2 mb-8">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeCategory === cat
-                      ? "bg-gradient-sacred text-primary-foreground shadow-warm"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPujas.map((puja, i) => (
+              {pujas.map((puja, i) => (
                 <motion.div key={puja.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
                   <PujaCard puja={puja} />
                 </motion.div>
               ))}
             </div>
-            {filteredPujas.length === 0 && <div className="text-center py-20 text-muted-foreground">No pujas found in this category.</div>}
           </TabsContent>
 
           {/* Chadhava Tab */}
@@ -84,7 +65,7 @@ const PujasPage = () => {
                     <h3 className="font-heading text-lg font-semibold mb-2">{item.title}</h3>
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="font-heading text-xl font-bold text-primary">₹{item.price}</span>
+                      <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
                       <button onClick={() => setSelectedChadhava(item)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         Offer Now
@@ -96,8 +77,8 @@ const PujasPage = () => {
             </div>
           </TabsContent>
 
-          {/* Prasad Tab */}
-          <TabsContent value="prasad">
+          {/* Naivedya Tab */}
+          <TabsContent value="naivedya">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {prasadItems.map((item, i) => (
                 <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
@@ -109,10 +90,37 @@ const PujasPage = () => {
                     <h3 className="font-heading text-lg font-semibold mb-2">{item.title}</h3>
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="font-heading text-xl font-bold text-primary">₹{item.price}</span>
+                      <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
                       <button onClick={() => setSelectedPrasad(item)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Order Prasad
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* Other Services Tab */}
+          <TabsContent value="other">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherServices.map((item, i) => (
+                <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  <div className="relative h-48 overflow-hidden">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-heading text-lg font-semibold mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-heading text-xl font-bold text-primary">
+                        {item.isCustomAmount ? `Min ₹${item.minAmount}` : `₹${item.price.toLocaleString()}`}
+                      </span>
+                      <button onClick={() => setSelectedPrasad(item)}
+                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        Book Now
                       </button>
                     </div>
                   </div>
@@ -125,7 +133,7 @@ const PujasPage = () => {
           <TabsContent value="darshan">
             <div className="mb-6">
               <p className="text-sm text-muted-foreground mb-4">
-                <strong>Online Darshan:</strong> Watch live from anywhere. <strong>Offline Darshan:</strong> Visit the temple with priority entry.
+                <strong>Online:</strong> Watch live from anywhere. <strong>Offline:</strong> Visit the temple with priority entry.
               </p>
               <div className="flex gap-2 mb-6">
                 {(["all", "online", "offline"] as const).map((t) => (
@@ -272,7 +280,7 @@ const PujasPage = () => {
                   <div className="mt-6 pt-4 border-t border-border">
                     <p className="text-sm font-medium mb-1">Deity</p>
                     <p className="text-primary font-semibold">{templeInfo.deity}</p>
-                    <p className="text-xs text-muted-foreground mt-1">One of the twelve sacred Jyotirlingas</p>
+                    <p className="text-xs text-muted-foreground mt-1">One of the sacred Shakti Peethas</p>
                   </div>
                 </div>
               </div>
@@ -288,7 +296,8 @@ const PujasPage = () => {
       )}
       {selectedPrasad && (
         <BookingModal open={!!selectedPrasad} onOpenChange={(o) => !o && setSelectedPrasad(null)}
-          bookingType="prasad" itemName={selectedPrasad.title} amount={selectedPrasad.price} />
+          bookingType="prasad" itemName={selectedPrasad.title} amount={selectedPrasad.price}
+          isCustomAmount={selectedPrasad.isCustomAmount} minAmount={selectedPrasad.minAmount} />
       )}
       {selectedDarshan && selectedDarshan.type === "offline" && (
         <BookingModal open={!!selectedDarshan} onOpenChange={(o) => !o && setSelectedDarshan(null)}

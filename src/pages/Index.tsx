@@ -23,7 +23,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Sacred temple" className="w-full h-full object-cover" width={1920} height={1080} />
+          <img src={heroImage} alt="Shri Mahalaxmi Mandir Kolhapur" className="w-full h-full object-cover" width={1920} height={1080} />
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-transparent" />
         </div>
         <div className="container relative z-10">
@@ -38,7 +38,7 @@ const Index = () => {
               <span className="text-gradient-sacred">Delivered Home</span>
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-              Book personalized Vedic pujas, offer chadhava, order prasad, and experience live darshan at Shri Mahakaleshwar Jyotirlinga Temple — from anywhere in the world.
+              Book personalized pujas by hereditary Shreepujak at Shri Mahalaxmi Mandir, Kolhapur (Ambabai) — from anywhere in the world.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -48,7 +48,7 @@ const Index = () => {
                 Explore Pujas
               </Link>
               <Link
-                to="/darshan"
+                to="/pujas"
                 className="inline-flex items-center justify-center rounded-lg border border-primary-foreground/30 px-8 py-3.5 font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/10"
               >
                 Live Darshan
@@ -67,9 +67,9 @@ const Index = () => {
               <span className="text-primary-foreground/60">•</span>
               <span className="text-primary-foreground font-semibold">🙏 Trusted by 50K+ Devotees</span>
               <span className="text-primary-foreground/60">•</span>
-              <span className="text-primary-foreground font-semibold">🕉️ Mahakaleshwar Temple</span>
+              <span className="text-primary-foreground font-semibold">🕉️ Mahalaxmi Mandir Kolhapur</span>
               <span className="text-primary-foreground/60">•</span>
-              <span className="text-primary-foreground font-semibold">📿 Authentic Vedic Rituals</span>
+              <span className="text-primary-foreground font-semibold">📿 Hereditary Shreepujak</span>
               <span className="text-primary-foreground/60">•</span>
             </div>
           ))}
@@ -83,7 +83,7 @@ const Index = () => {
             Featured <span className="text-gradient-sacred">Pujas</span>
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-xl mx-auto">
-            Book sacred pujas performed at Shri Mahakaleshwar Jyotirlinga Temple in your name.
+            Book sacred pujas performed by hereditary Shreepujak at Shri Mahalaxmi Mandir, Kolhapur.
           </motion.p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
