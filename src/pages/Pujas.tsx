@@ -1,22 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { pujas, chadhavaItems, prasadItems, otherServices, darshanSlots, templeEvents, templeInfo } from "@/lib/data";
-import type { ChadhavaItem, PrasadItem, DarshanSlot, TempleEvent } from "@/lib/data";
-import PujaCard from "@/components/PujaCard";
-import BookingModal from "@/components/BookingModal";
+import { pujas, chadhavaItems, prasadItems, otherServices, darshanSlots, templeEvents } from "@/lib/data";
+import type { DarshanSlot } from "@/lib/data";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Monitor, MapPin, Calendar, Clock, Phone, Mail } from "lucide-react";
+import { Monitor, MapPin, Calendar } from "lucide-react";
 
 const PujasPage = () => {
+  const navigate = useNavigate();
   const [darshanFilter, setDarshanFilter] = useState<"all" | "online" | "offline">("all");
-  const [selectedChadhava, setSelectedChadhava] = useState<ChadhavaItem | null>(null);
-  const [selectedPrasad, setSelectedPrasad] = useState<(PrasadItem & { isCustomAmount?: boolean; minAmount?: number }) | null>(null);
-  const [selectedDarshan, setSelectedDarshan] = useState<DarshanSlot | null>(null);
-  const [selectedEvent, setSelectedEvent] = useState<TempleEvent | null>(null);
 
   const filteredDarshan = darshanFilter === "all" ? darshanSlots : darshanSlots.filter((s) => s.type === darshanFilter);
+
+  const bookNow = (type: string, id: string) => {
+    navigate(`/book/${type}/${id}`);
+  };
 
   return (
     <div className="min-h-screen">
@@ -37,15 +37,33 @@ const PujasPage = () => {
             <TabsTrigger value="other" className="flex-1 min-w-[100px]">🙏 Other</TabsTrigger>
             <TabsTrigger value="darshan" className="flex-1 min-w-[100px]">🛕 Darshan</TabsTrigger>
             <TabsTrigger value="events" className="flex-1 min-w-[100px]">📅 Events</TabsTrigger>
-            <TabsTrigger value="temple" className="flex-1 min-w-[100px]">🏛️ Temple</TabsTrigger>
           </TabsList>
 
           {/* Pujas Tab */}
           <TabsContent value="pujas">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {pujas.map((puja, i) => (
-                <motion.div key={puja.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-                  <PujaCard puja={puja} />
+                <motion.div key={puja.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  <div className="relative h-48 overflow-hidden">
+                    <img src={puja.image} alt={puja.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                    {puja.tag && <span className="absolute top-3 left-3 bg-gradient-sacred text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">{puja.tag}</span>}
+                  </div>
+                  <div className="p-5">
+                    <span className="text-xs font-semibold text-primary uppercase tracking-wide">{puja.category}</span>
+                    <h3 className="font-heading text-lg font-semibold mt-1 mb-2 line-clamp-1">{puja.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{puja.description}</p>
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground mb-4">
+                      <Calendar className="w-3 h-3" /> {puja.date}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-heading text-xl font-bold text-primary">₹{puja.price.toLocaleString()}</span>
+                      <button onClick={() => bookNow("puja", puja.id)}
+                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -66,7 +84,7 @@ const PujasPage = () => {
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
-                      <button onClick={() => setSelectedChadhava(item)}
+                      <button onClick={() => bookNow("chadhava", item.id)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         Offer Now
                       </button>
@@ -91,7 +109,7 @@ const PujasPage = () => {
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
-                      <button onClick={() => setSelectedPrasad(item)}
+                      <button onClick={() => bookNow("naivedya", item.id)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         Book Now
                       </button>
@@ -118,7 +136,7 @@ const PujasPage = () => {
                       <span className="font-heading text-xl font-bold text-primary">
                         {item.isCustomAmount ? `Min ₹${item.minAmount}` : `₹${item.price.toLocaleString()}`}
                       </span>
-                      <button onClick={() => setSelectedPrasad(item)}
+                      <button onClick={() => bookNow("other", item.id)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         Book Now
                       </button>
@@ -154,7 +172,7 @@ const PujasPage = () => {
                     <img src={slot.image} alt={slot.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     <div className="absolute top-3 left-3">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
-                        slot.type === "online" ? "bg-emerald-500 text-white" : "bg-primary text-primary-foreground"
+                        slot.type === "online" ? "bg-emerald-500 text-primary-foreground" : "bg-primary text-primary-foreground"
                       }`}>
                         {slot.type === "online" ? <Monitor className="w-3 h-3" /> : <MapPin className="w-3 h-3" />}
                         {slot.type === "online" ? "Live Online" : "In-Person Visit"}
@@ -167,7 +185,7 @@ const PujasPage = () => {
                     <p className="text-xs text-muted-foreground mb-4">🕐 {slot.time}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">{slot.price === 0 ? "Free" : `₹${slot.price}`}</span>
-                      <button onClick={() => setSelectedDarshan(slot)}
+                      <button onClick={() => bookNow("darshan", slot.id)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         {slot.type === "online" ? "Watch Live" : "Book Pass"}
                       </button>
@@ -197,7 +215,7 @@ const PujasPage = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{event.price.toLocaleString()}</span>
-                      <button onClick={() => setSelectedEvent(event)}
+                      <button onClick={() => bookNow("event", event.id)}
                         className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                         Book Now
                       </button>
@@ -207,106 +225,8 @@ const PujasPage = () => {
               ))}
             </div>
           </TabsContent>
-
-          {/* Temple Details Tab */}
-          <TabsContent value="temple">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-8">
-                <div className="rounded-xl overflow-hidden">
-                  <img src={templeInfo.image} alt={templeInfo.name} className="w-full h-64 md:h-80 object-cover" />
-                </div>
-                <div>
-                  <h2 className="font-heading text-2xl font-bold mb-3">{templeInfo.name}</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{templeInfo.description}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-semibold mb-2">History</h3>
-                  <p className="text-muted-foreground leading-relaxed">{templeInfo.history}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-semibold mb-2">Architecture</h3>
-                  <p className="text-muted-foreground leading-relaxed">{templeInfo.architecture}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-semibold mb-2">Significance</h3>
-                  <p className="text-muted-foreground leading-relaxed">{templeInfo.significance}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-semibold mb-2">Major Festivals</h3>
-                  <p className="text-muted-foreground leading-relaxed">{templeInfo.festivals}</p>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <div className="rounded-xl bg-card p-6 shadow-card sticky top-24">
-                  <h3 className="font-heading font-semibold mb-4">Temple Information</h3>
-                  <div className="space-y-4 text-sm">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <MapPin className="w-4 h-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Address</p>
-                        <p className="text-muted-foreground">{templeInfo.address}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Clock className="w-4 h-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Timings</p>
-                        <p className="text-muted-foreground">{templeInfo.timings}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Phone className="w-4 h-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">{templeInfo.phone}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Mail className="w-4 h-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">{templeInfo.email}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-border">
-                    <p className="text-sm font-medium mb-1">Deity</p>
-                    <p className="text-primary font-semibold">{templeInfo.deity}</p>
-                    <p className="text-xs text-muted-foreground mt-1">One of the sacred Shakti Peethas</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
         </Tabs>
       </div>
-
-      {/* Booking Modals */}
-      {selectedChadhava && (
-        <BookingModal open={!!selectedChadhava} onOpenChange={(o) => !o && setSelectedChadhava(null)}
-          bookingType="chadhava" itemName={selectedChadhava.title} amount={selectedChadhava.price} />
-      )}
-      {selectedPrasad && (
-        <BookingModal open={!!selectedPrasad} onOpenChange={(o) => !o && setSelectedPrasad(null)}
-          bookingType="prasad" itemName={selectedPrasad.title} amount={selectedPrasad.price}
-          isCustomAmount={selectedPrasad.isCustomAmount} minAmount={selectedPrasad.minAmount} />
-      )}
-      {selectedDarshan && selectedDarshan.type === "offline" && (
-        <BookingModal open={!!selectedDarshan} onOpenChange={(o) => !o && setSelectedDarshan(null)}
-          bookingType="darshan" itemName={selectedDarshan.title} amount={selectedDarshan.price} />
-      )}
-      {selectedEvent && (
-        <BookingModal open={!!selectedEvent} onOpenChange={(o) => !o && setSelectedEvent(null)}
-          bookingType="puja" itemName={selectedEvent.title} amount={selectedEvent.price} />
-      )}
 
       <Footer />
     </div>

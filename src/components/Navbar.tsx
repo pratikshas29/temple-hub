@@ -9,6 +9,7 @@ import { LogIn, Menu, X } from "lucide-react";
 const navLinks = [
   { path: "/", label: "Home" },
   { path: "/pujas", label: "Puja Booking" },
+  { path: "/temple", label: "About Temple" },
   { path: "/about", label: "About" },
   { path: "/contact", label: "Contact" },
 ];

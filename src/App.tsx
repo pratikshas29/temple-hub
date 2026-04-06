@@ -14,6 +14,8 @@ import MyBookingsPage from "./pages/MyBookings";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
+import TempleDetails from "./pages/TempleDetails";
+import BookingPage from "./pages/BookingPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,8 @@ const App = () => (
             <Route path="/chadhava" element={<Navigate to="/pujas" replace />} />
             <Route path="/prasad" element={<Navigate to="/pujas" replace />} />
             <Route path="/darshan" element={<Navigate to="/pujas" replace />} />
+            <Route path="/temple" element={<TempleDetails />} />
+            <Route path="/book/:type/:id" element={<BookingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<ProfilePage />} />
