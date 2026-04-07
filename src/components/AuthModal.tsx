@@ -65,7 +65,7 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
           <span className="text-4xl block mb-2">🙏</span>
           <DialogHeader>
             <DialogTitle className="text-primary-foreground font-heading text-xl">
-              {tab === "login" ? "Welcome Back" : "Join Divya Seva"}
+              {tab === "login" ? "Welcome Back" : "Join MahalaxmiPuja"}
             </DialogTitle>
           </DialogHeader>
           <p className="text-primary-foreground/80 text-sm mt-1">

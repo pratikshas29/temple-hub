@@ -181,9 +181,9 @@ const AdminDashboard = () => {
           {activeTab === "bookings" && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <h1 className="font-heading text-2xl font-bold mb-6">All Bookings</h1>
-              <p className="text-muted-foreground text-sm">
-                Bookings from devotees are stored in the database. View them in Lovable Cloud backend.
-              </p>
+              <div className="text-muted-foreground text-sm">
+                Bookings from devotees are stored in the database. View them in the Cloud backend.
+              </div>
             </motion.div>
           )}
         </div>

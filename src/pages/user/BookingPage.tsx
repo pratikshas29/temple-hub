@@ -289,10 +289,7 @@ const BookingPage = () => {
                 <Label htmlFor="gotra">Gotra (optional)</Label>
                 <Input id="gotra" value={gotra} onChange={(e) => setGotra(e.target.value)} placeholder="Enter gotra" className="mt-1" />
               </div>
-              <div>
-                <Label htmlFor="address">Address (optional)</Label>
-                <Input id="address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter delivery / correspondence address" className="mt-1" />
-              </div>
+             
               <div>
                 <Label>Number of People</Label>
                 <div className="flex items-center gap-3 mt-1">

@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl">🙏</span>
-            <span className="font-heading text-xl font-bold text-gradient-sacred">Divya Seva</span>
+            <span className="font-heading text-xl font-bold text-gradient-sacred">MahalaxmiPuja</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-6">

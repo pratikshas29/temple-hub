@@ -56,7 +56,7 @@ const AboutPage = () => (
           animate={{ opacity: 1, y: 0 }}
           className="font-heading text-3xl md:text-5xl font-bold text-primary-foreground mb-2"
         >
-          About <span className="text-gradient-sacred">Divya Seva</span>
+          About <span className="text-gradient-sacred">MahalaxmiPuja</span>
         </motion.h1>
         <p className="text-primary-foreground/80 max-w-xl">
           Puja services by hereditary Shreepujak at {templeInfo.name}.

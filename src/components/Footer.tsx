@@ -7,7 +7,7 @@ const Footer = () => (
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-3xl">🙏</span>
-            <span className="font-heading text-2xl font-bold text-gradient-sacred">Divya Seva</span>
+            <span className="font-heading text-2xl font-bold text-gradient-sacred">MahalaxmiPuja</span>
           </div>
           <p className="text-sm opacity-80 max-w-md leading-relaxed">
             Puja services by hereditary Shreepujak at Shri Mahalaxmi Mandir, Kolhapur (Ambabai). Book personalized pujas, offer chadhava, naivedya, and experience darshan.
@@ -39,7 +39,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="border-t border-primary-foreground/10 mt-12 pt-6 text-center text-xs opacity-50">
-        © 2026 Divya Seva. All rights reserved.
+        © 2026 MahalaxmiPuja. All rights reserved.
       </div>
     </div>
   </footer>
