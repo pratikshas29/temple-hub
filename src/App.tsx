@@ -15,6 +15,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import TempleDetails from "./pages/TempleDetails";
+import PujaDetails from "./pages/PujaDetails";
 import BookingPage from "./pages/BookingPage";
 
 const queryClient = new QueryClient();
@@ -29,11 +30,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/pujas" element={<PujasPage />} />
-            {/* Redirect old routes to /pujas */}
             <Route path="/chadhava" element={<Navigate to="/pujas" replace />} />
             <Route path="/prasad" element={<Navigate to="/pujas" replace />} />
             <Route path="/darshan" element={<Navigate to="/pujas" replace />} />
             <Route path="/temple" element={<TempleDetails />} />
+            <Route path="/puja/:type/:id" element={<PujaDetails />} />
             <Route path="/book/:type/:id" element={<BookingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
