@@ -9,6 +9,9 @@ export interface Puja {
   tag?: string;
   isCustomAmount?: boolean;
   minAmount?: number;
+  benefits?: string[];
+  process?: string[];
+  faqs?: { q: string; a: string }[];
 }
 
 export interface ChadhavaItem {
@@ -77,6 +80,34 @@ export const templeInfo = {
   significance: "The idol of Mahalaxmi is believed to be self-manifested (Swayambhu). The temple is one of the six Mahalaxmi temples and is considered the most important. The annual Kirnotsav, where the rays of the setting sun fall directly on the face of the idol, is a unique natural phenomenon observed in January and November.",
 };
 
+export const templeHistory = [
+  { year: "7th Century CE (circa 634 CE)", title: "Temple Construction", desc: "Temple constructed during the Chalukya dynasty by King Karnadeva" },
+  { year: "Architectural Heritage", title: "Classic Architecture", desc: "Classic Chalukya and Hemadpanthi architectural styles implemented" },
+  { year: "Spiritual Recognition", title: "Shaktipeeth Status", desc: "Established as one of the three and a half Shaktipeeths in Maharashtra" },
+  { year: "Present Day", title: "Living Heritage", desc: "Continues to attract millions of devotees annually" },
+];
+
+export const dailyTempleRoutine = [
+  { time: "5:00 AM", activity: "Kakad Aarti", desc: "Morning awakening aarti of the Goddess" },
+  { time: "6:00 AM", activity: "Abhishek", desc: "Sacred bath of the deity with milk, honey & water" },
+  { time: "7:00 AM", activity: "Shringar", desc: "Adornment of the Goddess with ornaments & flowers" },
+  { time: "8:00 AM", activity: "Darshan Opens", desc: "Temple opens for general darshan" },
+  { time: "12:00 PM", activity: "Madhyanh Aarti", desc: "Afternoon aarti with Naivedya offering" },
+  { time: "3:00 PM", activity: "Afternoon Darshan", desc: "Darshan resumes after afternoon rest" },
+  { time: "7:00 PM", activity: "Dhoop Aarti", desc: "Evening aarti with incense & lamps" },
+  { time: "9:00 PM", activity: "Shej Aarti", desc: "Night aarti — closing ceremony" },
+  { time: "9:30 PM", activity: "Temple Closes", desc: "Temple closes for the day" },
+];
+
+export const templeGallery = [
+  { src: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600", caption: "Mahalaxmi Temple Front View" },
+  { src: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600", caption: "Sacred Aarti Ceremony" },
+  { src: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=600", caption: "Navratri Celebrations" },
+  { src: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600", caption: "Temple Architecture" },
+  { src: "https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=600", caption: "Havan Ceremony" },
+  { src: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600", caption: "Festival Decorations" },
+];
+
 // Festival period: 22 September to 7 October
 export const festivalDays = [
   "Ghatasthapana",
@@ -100,6 +131,13 @@ export const pujas: Puja[] = [
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600",
     tag: "Popular",
+    benefits: ["Blessings of Goddess Mahalaxmi", "Prosperity and wealth", "Removal of obstacles", "Peace of mind"],
+    process: ["Sankalp (sacred vow) taken in devotee's name", "Silver paduka is worshipped with kumkum", "Mantras chanted by Shreepujak", "Aarti and Naivedya offered", "Prasad sent to devotee"],
+    faqs: [
+      { q: "Can I attend online?", a: "Yes, we provide a live video link for you to watch the puja." },
+      { q: "How long does the puja take?", a: "Approximately 30-45 minutes." },
+      { q: "Will I receive prasad?", a: "Yes, prasad is sent via courier (charges apply separately)." },
+    ],
   },
   {
     id: "ps2",
@@ -109,6 +147,12 @@ export const pujas: Puja[] = [
     price: 551,
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600",
+    benefits: ["Divine blessings of Ambabai", "Spiritual purification", "Family well-being", "Good fortune"],
+    process: ["Sankalp taken in devotee's name", "Padya (feet washing) ritual on silver paduka", "Vedic mantras recited", "Flowers and kumkum offered", "Aarti performed"],
+    faqs: [
+      { q: "What is Padya Puja?", a: "Padya Puja involves washing the sacred feet (paduka) of the deity as an act of devotion." },
+      { q: "Can family members be included?", a: "Yes, you can include family members' names in the sankalp." },
+    ],
   },
   {
     id: "ps3",
@@ -118,6 +162,12 @@ export const pujas: Puja[] = [
     price: 751,
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?w=600",
+    benefits: ["Powerful spiritual cleansing", "Blessings for entire family", "Prosperity and health", "Fulfillment of wishes"],
+    process: ["Devotee sits in front (sovale/dhoti required)", "Panchamrut (5 sacred liquids) abhishek", "Mantra chanting throughout", "Family can attend and participate", "Prasad distribution"],
+    faqs: [
+      { q: "What is Panchamrut?", a: "A mixture of milk, curd, ghee, honey, and sugar — five sacred liquids." },
+      { q: "Do I need special clothing?", a: "Yes, the main devotee needs to wear sovale/dhoti." },
+    ],
   },
   {
     id: "ps4",
@@ -128,6 +178,12 @@ export const pujas: Puja[] = [
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600",
     tag: "Special",
+    benefits: ["Complete family ritual package", "Ancestral blessings", "Removal of ancestral doshas", "Complete spiritual fulfillment"],
+    process: ["Panchamrut Abhishek performed", "Naivedya offered to the Goddess", "Savashna ritual completed", "Brahman and Kumarika Bhojan arranged", "Full Saptashati Path recited"],
+    faqs: [
+      { q: "What is Kulachar?", a: "Kulachar is a complete family tradition ritual that includes multiple sacred ceremonies." },
+      { q: "How long does it take?", a: "The complete Kulachar takes approximately 3-4 hours." },
+    ],
   },
   {
     id: "ps5",
@@ -137,6 +193,11 @@ export const pujas: Puja[] = [
     price: 7001,
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=600",
+    benefits: ["1000 names of Goddess chanted", "Maximum divine blessings", "Business & career success", "Overall life prosperity"],
+    process: ["Grand Mahapuja setup", "Abhishek with sacred items", "Recitation of 1000 names of Laxmi", "Kumkumarchan performed", "Grand Aarti and Naivedya"],
+    faqs: [
+      { q: "What is Sahastra Namavali?", a: "Recitation of 1000 sacred names of Goddess Laxmi during the puja." },
+    ],
   },
   {
     id: "ps6",
@@ -147,6 +208,11 @@ export const pujas: Puja[] = [
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600",
     tag: "Premium",
+    benefits: ["Powerful Vedic fire ritual", "Wealth and abundance", "Removal of negative energies", "Spiritual elevation"],
+    process: ["Abhishek and Puja performed", "Kumkumarchan completed", "Sacred fire (Havan kund) prepared", "16 recitations of Shreesukta in the fire", "Grand conclusion with Purnahuti"],
+    faqs: [
+      { q: "What is Shreesukta?", a: "Shreesukta is a powerful Vedic hymn dedicated to Goddess Lakshmi for wealth and prosperity." },
+    ],
   },
   {
     id: "ps7",
@@ -157,6 +223,12 @@ export const pujas: Puja[] = [
     category: "Pooja Services",
     image: "https://images.unsplash.com/photo-1609766856923-7e0a0c06d5e6?w=600",
     tag: "Grand",
+    benefits: ["Most powerful puja offering", "Protection from all evils", "Fulfillment of major wishes", "Complete divine grace"],
+    process: ["10 complete recitations of Durga Saptashati", "Abhishek with elaborate rituals", "Kumkumarchan ceremony", "1 complete Path Havan in sacred fire", "Grand Purnahuti and Aarti"],
+    faqs: [
+      { q: "How long does Navachandi take?", a: "This is a full-day ceremony that may span 6-8 hours." },
+      { q: "Can I attend in person?", a: "Yes, offline booking allows you to attend at the temple." },
+    ],
   },
 ];
 

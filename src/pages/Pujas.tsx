@@ -14,8 +14,8 @@ const PujasPage = () => {
 
   const filteredDarshan = darshanFilter === "all" ? darshanSlots : darshanSlots.filter((s) => s.type === darshanFilter);
 
-  const bookNow = (type: string, id: string) => {
-    navigate(`/book/${type}/${id}`);
+  const viewDetails = (type: string, id: string) => {
+    navigate(`/puja/${type}/${id}`);
   };
 
   return (
@@ -44,7 +44,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {pujas.map((puja, i) => (
                 <motion.div key={puja.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("puja", puja.id)}>
                   <div className="relative h-48 overflow-hidden">
                     <img src={puja.image} alt={puja.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     {puja.tag && <span className="absolute top-3 left-3 bg-gradient-sacred text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">{puja.tag}</span>}
@@ -58,10 +59,9 @@ const PujasPage = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{puja.price.toLocaleString()}</span>
-                      <button onClick={() => bookNow("puja", puja.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Book Now
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -74,7 +74,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {chadhavaItems.map((item, i) => (
                 <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("chadhava", item.id)}>
                   <div className="relative h-48 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     {item.tag && <span className="absolute top-3 left-3 bg-gradient-sacred text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">{item.tag}</span>}
@@ -84,10 +85,9 @@ const PujasPage = () => {
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
-                      <button onClick={() => bookNow("chadhava", item.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Offer Now
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -100,7 +100,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {prasadItems.map((item, i) => (
                 <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("naivedya", item.id)}>
                   <div className="relative h-48 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                   </div>
@@ -109,10 +110,9 @@ const PujasPage = () => {
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{item.price.toLocaleString()}</span>
-                      <button onClick={() => bookNow("naivedya", item.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Book Now
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -125,7 +125,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherServices.map((item, i) => (
                 <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("other", item.id)}>
                   <div className="relative h-48 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                   </div>
@@ -136,10 +137,9 @@ const PujasPage = () => {
                       <span className="font-heading text-xl font-bold text-primary">
                         {item.isCustomAmount ? `Min ₹${item.minAmount}` : `₹${item.price.toLocaleString()}`}
                       </span>
-                      <button onClick={() => bookNow("other", item.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Book Now
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -167,7 +167,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredDarshan.map((slot, i) => (
                 <motion.div key={slot.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("darshan", slot.id)}>
                   <div className="relative h-56 overflow-hidden">
                     <img src={slot.image} alt={slot.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     <div className="absolute top-3 left-3">
@@ -185,10 +186,9 @@ const PujasPage = () => {
                     <p className="text-xs text-muted-foreground mb-4">🕐 {slot.time}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">{slot.price === 0 ? "Free" : `₹${slot.price}`}</span>
-                      <button onClick={() => bookNow("darshan", slot.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        {slot.type === "online" ? "Watch Live" : "Book Pass"}
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -201,7 +201,8 @@ const PujasPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {templeEvents.map((event, i) => (
                 <motion.div key={event.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+                  className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+                  onClick={() => viewDetails("event", event.id)}>
                   <div className="relative h-56 overflow-hidden">
                     <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     {event.tag && <span className="absolute top-3 left-3 bg-gradient-sacred text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">{event.tag}</span>}
@@ -215,10 +216,9 @@ const PujasPage = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-heading text-xl font-bold text-primary">₹{event.price.toLocaleString()}</span>
-                      <button onClick={() => bookNow("event", event.id)}
-                        className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                        Book Now
-                      </button>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                        View Details
+                      </span>
                     </div>
                   </div>
                 </motion.div>

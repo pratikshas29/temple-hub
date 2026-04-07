@@ -11,7 +11,10 @@ const PujaCard = ({ puja }: PujaCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all">
+    <div
+      className="group rounded-xl overflow-hidden bg-card shadow-card hover:shadow-warm transition-all cursor-pointer"
+      onClick={() => navigate(`/puja/puja/${puja.id}`)}
+    >
       <div className="relative h-48 overflow-hidden">
         <img
           src={puja.image}
@@ -37,12 +40,9 @@ const PujaCard = ({ puja }: PujaCardProps) => {
         </div>
         <div className="flex items-center justify-between">
           <span className="font-heading text-xl font-bold text-primary">₹{puja.price.toLocaleString()}</span>
-          <button
-            onClick={() => navigate(`/book/puja/${puja.id}`)}
-            className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
-          >
-            Book Now
-          </button>
+          <span className="inline-flex items-center justify-center rounded-lg bg-gradient-sacred px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+            View Details
+          </span>
         </div>
       </div>
     </div>
